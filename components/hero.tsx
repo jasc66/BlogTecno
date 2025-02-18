@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-interface HeroProps {
+export interface HeroProps {
   title: string
   description: string
   backgroundImage: {
