@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Input } from "@/components/ui/input"
-import { Hero } from "@/components/hero"
+import { Input } from "../../components/ui/input"
+import { Hero } from "../../components/hero"
 
 interface Discussion {
   id: number
