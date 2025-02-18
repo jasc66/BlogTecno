@@ -6,27 +6,35 @@ import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { Hero } from "@/components/hero"
 
-const initialDiscussions = [
+interface Discussion {
+  id: number
+  title: string
+  author: string
+  replies: number
+  lastActivity: string
+}
+
+const initialDiscussions: Discussion[] = [
   {
     id: 1,
-    title: "¿Cuál es el futuro de la realidad virtual?",
+    title: "¿Cuál es el futuro de la ganadería sostenible?",
     author: "María López",
     replies: 15,
-    lastActivity: "2023-06-14",
+    lastActivity: "2024-02-16",
   },
   {
     id: 2,
-    title: "Debate: ¿Son seguros los coches autónomos?",
+    title: "Debate: Sistemas silvopastoriles vs. pastoreo tradicional",
     author: "Juan Pérez",
     replies: 23,
-    lastActivity: "2023-06-13",
+    lastActivity: "2024-02-15",
   },
   {
     id: 3,
-    title: "Impacto de la 5G en nuestras vidas",
+    title: "Impacto del cambio climático en la ganadería",
     author: "Ana García",
     replies: 8,
-    lastActivity: "2023-06-12",
+    lastActivity: "2024-02-14",
   },
 ]
 
@@ -40,7 +48,7 @@ export default function ForumPage() {
       const newDiscussion = {
         id: discussions.length + 1,
         title: newDiscussionTitle,
-        author: "Usuario Actual", // Esto debería ser reemplazado por el nombre del usuario autenticado
+        author: "Usuario Actual",
         replies: 0,
         lastActivity: new Date().toISOString().split("T")[0],
       }
@@ -54,7 +62,7 @@ export default function ForumPage() {
     <div className="bg-light-100 dark:bg-dark-900 min-h-screen">
       <Hero
         title="Foro de Discusión"
-        description="Únete a las conversaciones, comparte tus ideas y aprende de otros entusiastas la tecnología."
+        description="Únete a las conversaciones sobre ganadería sostenible y comparte tus experiencias."
         backgroundImage={{
           light:
             "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
@@ -86,10 +94,13 @@ export default function ForumPage() {
               key={discussion.id}
               className={`p-4 ${index !== discussions.length - 1 ? "border-b border-dark-700" : ""}`}
             >
-              <Link href={`/foro/${discussion.id}`} className="text-xl font-semibold text-blue-400 hover:text-blue-300">
+              <Link
+                href={`/foro/${discussion.id}`}
+                className="text-xl font-semibold text-dark-900 dark:text-light-100 hover:text-primary dark:hover:text-primary-light"
+              >
                 {discussion.title}
               </Link>
-              <div className="mt-2 flex justify-between text-sm text-gray-400">
+              <div className="mt-2 flex justify-between text-sm text-dark-600 dark:text-light-400">
                 <span>Iniciado por: {discussion.author}</span>
                 <span>Respuestas: {discussion.replies}</span>
                 <span>Última actividad: {discussion.lastActivity}</span>
