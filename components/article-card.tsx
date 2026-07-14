@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import Image from "next/image"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
+import Image from 'next/image'
+import { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
 
 interface ArticleCardProps {
   title: string
@@ -19,47 +19,44 @@ export function ArticleCard({ title, excerpt, image, date, author, slug }: Artic
   const [isHovered, setIsHovered] = useState(false)
   const router = useRouter()
 
-  const handleCardClick = () => {
-    router.push(slug)
-  }
-
   return (
-    <div className="bg-light-100 dark:bg-dark-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-      <div
-        className="relative aspect-square cursor-pointer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={handleCardClick}
-      >
+    <div
+      className="bg-card rounded-2xl overflow-hidden border border-border hover:shadow-xl hover:border-primary/50 transition-all duration-300 cursor-pointer group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => router.push(slug)}
+    >
+      <div className="relative aspect-[4/3] overflow-hidden">
         <Image
-          src={image || "/placeholder.svg"}
+          src={image}
           alt={title}
           fill
-          className="object-cover transition-opacity duration-300"
-          sizes="(max-width: 768px) 100vw, 1200px) 50vw, 33vw"
+          className={`object-cover transition-transform duration-500 ${isHovered ? 'scale-105' : 'scale-100'}`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {isHovered && (
-          <div className="absolute inset-0 bg-light-900 dark:bg-dark-100 bg-opacity-70 flex items-center justify-center p-4">
-            <p className="text-dark-900 dark:text-light-100 text-center">{excerpt}</p>
+          <div className="absolute inset-0 bg-black/60 flex items-center justify-center p-6">
+            <p className="text-white text-center line-clamp-3">{excerpt}</p>
           </div>
         )}
       </div>
       <div className="p-6">
-        <Link href={slug}>
-          <h3 className="text-xl font-bold text-dark-900 dark:text-light-100 mb-2 hover:text-gray-900 dark:hover:text-primary-light dark:hover:text-gray-50">
+        <Link href={slug} onClick={e => e.stopPropagation()}>
+          <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
             {title}
           </h3>
         </Link>
-        <div className="flex items-center mb-4">
-          <p className="text-sm font-medium text-dark-700 dark:text-light-300">
-            {author} • <span className="text-dark-500 dark:text-light-500">{date}</span>
-          </p>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+          <span>{author}</span>
+          <span>•</span>
+          <span>{date}</span>
         </div>
-        <Button asChild className="w-full bg-gray-900 hover:bg-primary-dark text-white dark:bg-gray-50" variant="outline">
-          <Link href={slug}>Leer más</Link>
+        <Button asChild className="w-full">
+          <Link href={slug} onClick={e => e.stopPropagation()}>
+            Leer más
+          </Link>
         </Button>
       </div>
     </div>
   )
 }
-

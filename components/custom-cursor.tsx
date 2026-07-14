@@ -1,12 +1,23 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
 
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [clicked, setClicked] = useState(false)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
+    const isTouchDevice = () => {
+      return 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    }
+
+    if (isTouchDevice()) {
+      return
+    }
+
+    setVisible(true)
+
     const updatePosition = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
     }
@@ -16,18 +27,20 @@ export function CustomCursor() {
       setTimeout(() => setClicked(false), 300)
     }
 
-    window.addEventListener("mousemove", updatePosition)
-    window.addEventListener("click", handleClick)
+    window.addEventListener('mousemove', updatePosition)
+    window.addEventListener('click', handleClick)
 
     return () => {
-      window.removeEventListener("mousemove", updatePosition)
-      window.removeEventListener("click", handleClick)
+      window.removeEventListener('mousemove', updatePosition)
+      window.removeEventListener('click', handleClick)
     }
   }, [])
 
+  if (!visible) return null
+
   return (
     <div
-      className={`custom-cursor ${clicked ? "cursor-click" : ""}`}
+      className={`custom-cursor ${clicked ? 'cursor-click' : ''}`}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -35,4 +48,3 @@ export function CustomCursor() {
     />
   )
 }
-

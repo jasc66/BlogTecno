@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="space-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0b0b15"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="satellite" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3a86ff"/>
+      <stop offset="100%" style="stop-color:#8338ec"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#space-bg)"/>
+  <circle cx="100" cy="100" r="40" fill="#ff006e" opacity="0.3"/>
+  <circle cx="700" cy="150" r="25" fill="#ffbe0b" opacity="0.4"/>
+  <rect x="380" y="280" width="60" height="40" fill="url(#satellite)" rx="4"/>
+  <rect x="320" y="295" width="180" height="10" fill="#3a86ff" opacity="0.7"/>
+  <rect x="320" y="295" width="180" height="10" fill="#8338ec" opacity="0.5"/>
+  <rect x="250" y="290" width="80" height="20" fill="#3a86ff" opacity="0.6" rx="2"/>
+  <text x="400" y="540" font-family="Arial" font-size="14" fill="#ffffff60" text-anchor="middle">Exploración Espacial</text>
+</svg>

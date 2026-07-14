@@ -1,10 +1,23 @@
-import { getArticleBySlug, getAllArticleSlugs } from "@/data/news"
-import Image from "next/image"
-import { notFound } from "next/navigation"
+import { getArticleBySlug, getAllArticleSlugs } from '@/data/news'
+import { articleMetadata } from '@/lib/seo'
+import type { NewsArticle } from '@/types/news'
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
   const slugs = getAllArticleSlugs()
-  return slugs.map((slug) => ({ slug }))
+  return slugs.map(slug => ({ slug }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+  const article = getArticleBySlug(params.slug) as NewsArticle | undefined
+  if (!article) return { title: 'Noticias' }
+  return articleMetadata(article)
 }
 
 export default function ArticlePage({ params }: { params: { slug: string } }) {
@@ -15,20 +28,28 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <article className="container mx-auto px-4 py-8">
+    <article className="container mx-auto px-4 py-8 mt-16">
       <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
       <div className="mb-4 text-gray-400">
         <span>Por {article.author} | </span>
         <span>Publicado el {article.date}</span>
       </div>
       <div className="relative w-full h-96 mb-8">
-        <Image src={article.image || "/placeholder.svg"} alt={article.title} fill className="object-cover rounded-lg" />
+        <Image
+          src={article.image || '/placeholder.svg'}
+          alt={article.title}
+          fill
+          className="object-cover rounded-lg"
+        />
       </div>
-      <div className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: article.content }} />
+      <div
+        className="prose prose-invert max-w-none"
+        dangerouslySetInnerHTML={{ __html: article.content }}
+      />
       <div className="mt-8">
         <h2 className="text-2xl font-bold mb-2">Etiquetas:</h2>
         <div className="flex flex-wrap gap-2">
-          {article.tags.map((tag) => (
+          {article.tags.map(tag => (
             <span key={tag} className="bg-dark-700 text-gray-200 px-3 py-1 rounded-full text-sm">
               {tag}
             </span>
@@ -38,4 +59,3 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     </article>
   )
 }
-

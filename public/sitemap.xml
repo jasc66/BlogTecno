@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>http://localhost:3000</loc><lastmod>2026-04-30</lastmod></url>
+  <url><loc>http://localhost:3000/noticias</loc><lastmod>2026-04-30</lastmod></url>
+  <url><loc>http://localhost:3000/noticias/nuevo-avance-computacion-cuantica</loc><lastmod>2026-04-30</lastmod></url>
+  <url><loc>http://localhost:3000/noticias/lanzamiento-satelite-comunicaciones-avanzado</loc><lastmod>2026-04-30</lastmod></url>
+  <url><loc>http://localhost:3000/boletines</loc><lastmod>2026-04-30</lastmod></url>
+  <url><loc>http://localhost:3000/foro</loc><lastmod>2026-04-30</lastmod></url>
+</urlset>

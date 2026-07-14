@@ -1,5 +1,4 @@
-# Crea o abre el archivo .gitignore
-echo '# dependencies
+# dependencies
 /node_modules
 /.pnp
 .pnp.js
@@ -31,4 +30,4 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts' > .gitignore
+next-env.d.ts

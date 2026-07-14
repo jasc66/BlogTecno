@@ -1,10 +1,11 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Input } from "../../components/ui/input"
-import { Hero } from "../../components/hero"
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { Input } from '@/components/ui/input'
+import { Hero } from '@/components/hero'
+import { MessageSquare, Plus, ArrowRight } from 'lucide-react'
 
 interface Discussion {
   id: number
@@ -17,99 +18,109 @@ interface Discussion {
 const initialDiscussions: Discussion[] = [
   {
     id: 1,
-    title: "¿Cuál es el futuro de la ganadería sostenible?",
-    author: "María López",
+    title: '¿Cuál es el futuro de la tecnología en la industria?',
+    author: 'María López',
     replies: 15,
-    lastActivity: "2024-02-16",
+    lastActivity: '2024-02-16',
   },
   {
     id: 2,
-    title: "Debate: Sistemas silvopastoriles vs. pastoreo tradicional",
-    author: "Juan Pérez",
+    title: 'Debate: IA vs. automatización tradicional',
+    author: 'Juan Pérez',
     replies: 23,
-    lastActivity: "2024-02-15",
+    lastActivity: '2024-02-15',
   },
   {
     id: 3,
-    title: "Impacto del cambio climático en la ganadería",
-    author: "Ana García",
+    title: 'El impacto de la computación cuántica',
+    author: 'Ana García',
     replies: 8,
-    lastActivity: "2024-02-14",
+    lastActivity: '2024-02-14',
   },
 ]
 
 export default function ForumPage() {
   const [discussions, setDiscussions] = useState(initialDiscussions)
-  const [newDiscussionTitle, setNewDiscussionTitle] = useState("")
+  const [newDiscussionTitle, setNewDiscussionTitle] = useState('')
   const [isCreatingDiscussion, setIsCreatingDiscussion] = useState(false)
 
   const handleCreateDiscussion = () => {
-    if (newDiscussionTitle.trim() !== "") {
-      const newDiscussion = {
-        id: discussions.length + 1,
-        title: newDiscussionTitle,
-        author: "Usuario Actual",
-        replies: 0,
-        lastActivity: new Date().toISOString().split("T")[0],
-      }
-      setDiscussions([newDiscussion, ...discussions])
-      setNewDiscussionTitle("")
+    if (newDiscussionTitle.trim() !== '') {
+      setDiscussions([
+        {
+          id: discussions.length + 1,
+          title: newDiscussionTitle,
+          author: 'Usuario Actual',
+          replies: 0,
+          lastActivity: new Date().toISOString().split('T')[0],
+        },
+        ...discussions,
+      ])
+      setNewDiscussionTitle('')
       setIsCreatingDiscussion(false)
     }
   }
 
   return (
-    <div className="bg-light-100 dark:bg-dark-900 min-h-screen">
+    <div className="min-h-screen">
       <Hero
         title="Foro de Discusión"
-        description="Únete a las conversaciones sobre ganadería sostenible y comparte tus experiencias."
-        backgroundImage={{
-          light:
-            "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-          dark: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-        }}
+        description="Únete a las conversaciones sobre tecnología y comparte tus experiencias."
+        badge="Comunidad"
       />
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-6">
-          {!isCreatingDiscussion ? (
-            <Button onClick={() => setIsCreatingDiscussion(true)}>Iniciar nueva discusión</Button>
-          ) : (
-            <div className="flex gap-2">
-              <Input
-                type="text"
-                placeholder="Título de la discusión"
-                value={newDiscussionTitle}
-                onChange={(e) => setNewDiscussionTitle(e.target.value)}
-              />
-              <Button onClick={handleCreateDiscussion}>Crear</Button>
-              <Button variant="outline" onClick={() => setIsCreatingDiscussion(false)}>
-                Cancelar
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="mb-8">
+            {!isCreatingDiscussion ? (
+              <Button onClick={() => setIsCreatingDiscussion(true)} className="gap-2">
+                <Plus size={18} />
+                Iniciar nueva discusión
               </Button>
-            </div>
-          )}
-        </div>
-        <div className="bg-white dark:bg-dark-800 rounded-lg overflow-hidden">
-          {discussions.map((discussion, index) => (
-            <div
-              key={discussion.id}
-              className={`p-4 ${index !== discussions.length - 1 ? "border-b border-dark-700" : ""}`}
-            >
-              <Link
-                href={`/foro/${discussion.id}`}
-                className="text-xl font-semibold text-dark-900 dark:text-light-100 hover:text-primary dark:hover:text-primary-light"
-              >
-                {discussion.title}
-              </Link>
-              <div className="mt-2 flex justify-between text-sm text-dark-600 dark:text-light-400">
-                <span>Iniciado por: {discussion.author}</span>
-                <span>Respuestas: {discussion.replies}</span>
-                <span>Última actividad: {discussion.lastActivity}</span>
+            ) : (
+              <div className="flex flex-col sm:flex-row gap-3 p-6 bg-card rounded-xl border border-border">
+                <Input
+                  type="text"
+                  placeholder="Título de la discusión"
+                  value={newDiscussionTitle}
+                  onChange={e => setNewDiscussionTitle(e.target.value)}
+                  className="flex-1"
+                />
+                <Button onClick={handleCreateDiscussion}>Crear</Button>
+                <Button variant="outline" onClick={() => setIsCreatingDiscussion(false)}>
+                  Cancelar
+                </Button>
               </div>
-            </div>
-          ))}
+            )}
+          </div>
+
+          <div className="space-y-4">
+            {discussions.map(discussion => (
+              <Link
+                key={discussion.id}
+                href={`/foro/${discussion.id}`}
+                className="block p-6 bg-card rounded-xl border border-border hover:border-primary/50 hover:shadow-lg transition-all duration-300 group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <MessageSquare className="w-6 h-6 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
+                      {discussion.title}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                      <span>Por {discussion.author}</span>
+                      <span>{discussion.replies} respuestas</span>
+                      <span>{discussion.lastActivity}</span>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
-

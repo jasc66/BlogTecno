@@ -1,57 +1,58 @@
-import { Hero } from "@/components/hero"
-import { ArticleCard } from "@/components/article-card"
+import { Hero } from '@/components/hero'
+import { ArticleCard } from '@/components/article-card'
+import type { Metadata } from 'next'
 
-// Asume que tienes un array de artículos de investigación
+export const metadata: Metadata = {
+  title: 'Investigaciones - TechInsight',
+  description: 'Investigaciones sobre tecnología, ciencia y sostenibilidad.',
+}
+
 const investigacionesArticles = [
-  // ... tus artículos aquí
   {
     id: 1,
-    title: "Artículo 1",
-    excerpt: "Resumen del artículo 1",
-    image: "url_imagen_1",
-    date: "2024-01-20",
-    author: "Autor 1",
-    slug: "articulo-1",
+    title: 'Avances en Computación Cuántica',
+    excerpt: 'Nuevas técnicas para mejorar la estabilidad de qubits en sistemas cuánticos.',
+    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    date: '2024-01-20',
+    author: 'Dr. Quantum',
+    slug: 'avances-computacion-cuantica',
   },
   {
     id: 2,
-    title: "Artículo 2",
-    excerpt: "Resumen del artículo 2",
-    image: "url_imagen_2",
-    date: "2024-02-15",
-    author: "Autor 2",
-    slug: "articulo-2",
+    title: 'Innovaciones en Telecomunicaciones',
+    excerpt: 'Satélites de última generación para conectividad global.',
+    image: 'https://images.unsplash.com/photo-1516849677043-ef67c9557e16?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    date: '2024-02-15',
+    author: 'Astro Tech',
+    slug: 'innovaciones-telecomunicaciones',
   },
 ]
 
 export default function InvestigacionesPage() {
   return (
-    <div className="bg-light-100 dark:bg-dark-900 min-h-screen">
+    <div className="min-h-screen">
       <Hero
-        title="Investigaciones en Ganadería Sostenible"
-        description="Descubre nuestros últimos avances en sistemas silvopastoriles, manejo de pasturas y mejoramiento la producción ganadera."
-        backgroundImage={{
-          light:
-            "https://res.cloudinary.com/dkjjcpwkc/image/upload/v1686925321/investigacion_ganadera_hero_image_rmzxc4.jpg",
-          dark: "https://res.cloudinary.com/dkjjcpwkc/image/upload/v1686925321/investigacion_ganadera_hero_image_dark_rmzxc4.jpg",
-        }}
+        title="Investigaciones"
+        description="Descubre nuestros últimos avances en investigación tecnológica y científica."
+        badge="Ciencia"
       />
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {investigacionesArticles.map((article) => (
-            <ArticleCard
-              key={article.id}
-              title={article.title}
-              excerpt={article.excerpt}
-              image={article.image}
-              date={article.date}
-              author={article.author}
-              slug={`/investigaciones/${article.slug}`}
-            />
-          ))}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {investigacionesArticles.map(article => (
+              <ArticleCard
+                key={article.id}
+                title={article.title}
+                excerpt={article.excerpt}
+                image={article.image}
+                date={article.date}
+                author={article.author}
+                slug={`/investigaciones/${article.slug}`}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
-

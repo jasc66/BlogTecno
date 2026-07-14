@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import Image from "next/image"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import Image from 'next/image'
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 interface HoodieCardProps {
   name: string
@@ -39,4 +39,3 @@ export function HoodieCard({ name, price, image1, image2 }: HoodieCardProps) {
     </div>
   )
 }
-

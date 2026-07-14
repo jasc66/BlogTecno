@@ -6,15 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest run",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,css,md}\""
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
     "glob": "^11.0.1",
     "lucide-react": "^0.475.0",
     "next": "^14.2.24",
+    "next-themes": "^0.4.6",
     "react": "^18",
     "react-dom": "^18",
     "rimraf": "^6.0.1",
@@ -24,6 +29,8 @@
   "devDependencies": {
     "@eslint/config-array": "^0.19.2",
     "@eslint/object-schema": "^2.1.6",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.3.1",
     "@types/node": "^20",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
@@ -31,9 +38,12 @@
     "@typescript-eslint/parser": "^8.24.1",
     "eslint": "^9.20.1",
     "eslint-config-next": "^15.1.7",
+    "eslint-config-prettier": "^10.1.8",
     "postcss": "^8",
+    "prettier": "^3.8.3",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^1.6.1"
   },
   "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
   "main": "tailwind.config.js",

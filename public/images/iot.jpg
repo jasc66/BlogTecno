@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="iot-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#iot-bg)"/>
+  <circle cx="200" cy="200" r="40" fill="#3a86ff30" stroke="#3a86ff" stroke-width="1"/>
+  <circle cx="400" cy="300" r="60" fill="#8338ec30" stroke="#8338ec" stroke-width="1"/>
+  <circle cx="600" cy="400" r="35" fill="#ff006e30" stroke="#ff006e" stroke-width="1"/>
+  <line x1="200" y1="200" x2="400" y2="300" stroke="#3a86ff40" stroke-width="1"/>
+  <line x1="400" y1="300" x2="600" y2="400" stroke="#8338ec40" stroke-width="1"/>
+  <line x1="200" y1="200" x2="600" y2="400" stroke="#ff006e20" stroke-width="1" stroke-dasharray="5,5"/>
+  <circle cx="300" cy="450" r="25" fill="#ffbe0b30" stroke="#ffbe0b" stroke-width="1"/>
+  <line x1="200" y1="200" x2="300" y2="450" stroke="#ffbe0b30" stroke-width="1"/>
+  <text x="400" y="540" font-family="Arial" font-size="14" fill="#ffffff60" text-anchor="middle">Internet de las Cosas</text>
+</svg>

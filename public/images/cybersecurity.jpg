@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="cybersec-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#cybersec-bg)"/>
+  <rect x="280" y="200" width="240" height="200" fill="none" stroke="#00ff88" stroke-width="2" rx="4"/>
+  <rect x="300" y="220" width="200" height="30" fill="#00ff8820"/>
+  <rect x="300" y="260" width="180" height="20" fill="#00ff8830"/>
+  <rect x="300" y="290" width="200" height="20" fill="#00ff8830"/>
+  <rect x="300" y="320" width="150" height="20" fill="#00ff8830"/>
+  <circle cx="400" cy="180" r="30" fill="none" stroke="#00ff88" stroke-width="2" opacity="0.6"/>
+  <path d="M385 180 L415 180 M400 165 L400 195" stroke="#00ff88" stroke-width="2"/>
+  <text x="400" y="540" font-family="Arial" font-size="14" fill="#ffffff60" text-anchor="middle">Ciberseguridad</text>
+</svg>

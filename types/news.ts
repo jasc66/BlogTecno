@@ -9,4 +9,3 @@ export interface NewsArticle {
   image: string
   tags: string[]
 }
-

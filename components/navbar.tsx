@@ -1,123 +1,163 @@
-"use client"
+'use client'
 
-import Link from "next/link"
-import { useState, useEffect } from "react"
-import { Logo } from "@/components/logo"
-import { Menu, X } from "lucide-react"
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { Logo } from '@/components/logo'
+import { Menu, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
+      setIsScrolled(window.scrollY > 10)
     }
-
-    window.addEventListener("scroll", handleScroll)
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
+  const navLinks = [
+    { href: '/', label: 'Inicio' },
+    { href: '/noticias', label: 'Noticias' },
+    { href: '/boletines', label: 'Boletines' },
+    { href: '/foro', label: 'Foro' },
+    { href: '/investigaciones', label: 'Investigaciones' },
+  ]
+
+  if (!isMounted) {
+    return (
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background h-16">
+        <div className="max-w-7xl mx-auto px-4 h-full flex items-center">
+          <Link href="/" className="flex-shrink-0">
+            <Logo />
+          </Link>
+        </div>
+      </nav>
+    )
+  }
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-light-100 dark:bg-dark-900 text-dark-900 dark:text-light-100 shadow-md"
-          : "bg-light-200 dark:bg-dark-800 text-dark-900 dark:text-light-100"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0">
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-background/95 backdrop-blur-md shadow-sm border-b border-border/50'
+            : 'bg-background/80 backdrop-blur-sm'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <Link href="/" className="flex-shrink-0 relative z-50">
               <Logo />
             </Link>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Link
-                  href="/"
-                  className="text-dark-900 dark:text-light-100 hover:text-gray-900 dark:hover:text-primary-light px-3 py-2 rounded-md text-sm font-medium dark:hover:text-gray-50"
-                >
-                  Inicio
-                </Link>
-                <Link
-                  href="/noticias"
-                  className="text-dark-900 dark:text-light-100 hover:text-gray-900 dark:hover:text-primary-light px-3 py-2 rounded-md text-sm font-medium dark:hover:text-gray-50"
-                >
-                  Noticias
-                </Link>
-                <Link
-                  href="/boletines"
-                  className="text-dark-900 dark:text-light-100 hover:text-gray-900 dark:hover:text-primary-light px-3 py-2 rounded-md text-sm font-medium dark:hover:text-gray-50"
-                >
-                  Boletines
-                </Link>
-                <Link
-                  href="/foro"
-                  className="text-dark-900 dark:text-light-100 hover:text-gray-900 dark:hover:text-primary-light px-3 py-2 rounded-md text-sm font-medium dark:hover:text-gray-50"
-                >
-                  Foro
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="-mr-2 flex md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-dark-900 dark:text-light-100 hover:text-gray-900 dark:hover:text-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-light-200 dark:focus:ring-offset-dark-800 focus:ring-white dark:focus:ring-dark-900 dark:hover:text-gray-50"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
+            
+      <div className="flex items-center space-x-1">
+        <div className="hidden md:flex items-center space-x-1">
+          {navLinks.map(link => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="px-4 py-2 rounded-lg text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/5 transition-all duration-200"
             >
-              <span className="sr-only">Abrir menú principal</span>
-              {isOpen ? (
-                <X className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="block h-6 w-6" aria-hidden="true" />
-              )}
-            </button>
-          </div>
+              {link.label}
+            </Link>
+          ))}
         </div>
-      </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-light-200 dark:bg-dark-800" id="mobile-menu">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              href="/"
-              className="text-dark-900 dark:text-light-100 hover:text-gray-900 dark:hover:text-primary-light block px-3 py-2 rounded-md text-base font-medium dark:hover:text-gray-50"
+        <ThemeToggle />
+
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          type="button"
+          className="md:hidden relative z-50 p-2 rounded-lg hover:bg-muted transition-colors"
+          aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={isOpen}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={isOpen ? 'close' : 'open'}
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.15 }}
             >
-              Inicio
-            </Link>
-            <Link
-              href="/noticias"
-              className="text-dark-900 dark:text-light-100 hover:text-gray-900 dark:hover:text-primary-light block px-3 py-2 rounded-md text-base font-medium dark:hover:text-gray-50"
-            >
-              Noticias
-            </Link>
-            <Link
-              href="/boletines"
-              className="text-dark-900 dark:text-light-100 hover:text-gray-900 dark:hover:text-primary-light block px-3 py-2 rounded-md text-base font-medium dark:hover:text-gray-50"
-            >
-              Boletines
-            </Link>
-            <Link
-              href="/foro"
-              className="text-dark-900 dark:text-light-100 hover:text-gray-900 dark:hover:text-primary-light block px-3 py-2 rounded-md text-base font-medium dark:hover:text-gray-50"
-            >
-              Foro
-            </Link>
+              {isOpen ? (
+                <X className="h-6 w-6 text-foreground" />
+              ) : (
+                <Menu className="h-6 w-6 text-foreground" />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </button>
+      </div>
           </div>
         </div>
-      )}
-    </nav>
+      </nav>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-72 bg-background border-l border-border z-40 md:hidden shadow-2xl"
+            >
+              <div className="flex flex-col h-full pt-20 pb-6">
+                <div className="px-6 space-y-1">
+                  {navLinks.map((link, index) => (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 transition-all"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="mt-auto px-6 pt-6 border-t border-border">
+                  <p className="text-xs text-muted-foreground">
+                    TechInsight © 2026
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
-

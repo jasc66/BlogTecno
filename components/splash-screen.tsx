@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import { cn } from "@/lib/utils"
+import { useEffect, useState } from 'react'
+import { cn } from '@/lib/utils'
+import { Logo } from '@/components/logo'
 
 export function SplashScreen() {
   const [progress, setProgress] = useState(0)
@@ -10,15 +10,15 @@ export function SplashScreen() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prev) => {
+      setProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval)
-          setTimeout(() => setIsComplete(true), 500) // Delay before hiding splash screen
+          setTimeout(() => setIsComplete(true), 300)
           return 100
         }
-        return prev + 2
+        return prev + 3
       })
-    }, 20)
+    }, 15)
 
     return () => clearInterval(interval)
   }, [])
@@ -26,22 +26,26 @@ export function SplashScreen() {
   return (
     <div
       className={cn(
-        "fixed inset-0 z-[60] flex flex-col items-center justify-center bg-dark-900 transition-opacity duration-500",
-        isComplete ? "opacity-0 pointer-events-none" : "opacity-100",
+        'fixed inset-0 z-[60] flex flex-col items-center justify-center bg-[#0a0a0a] transition-all duration-500',
+        isComplete ? 'opacity-0 pointer-events-none translate-y-0' : 'opacity-100',
       )}
     >
-      <div className="relative w-48 h-48 mb-8">
-        <Image src="/logo.svg" alt="TechInsight Logo" fill className="object-contain" priority />
+      <div className="mb-8">
+        <Logo />
       </div>
 
-      <div className="text-2xl font-bold mb-4 text-white">TechInsight</div>
-
-      <div className="w-64 h-1 bg-dark-400 rounded-full overflow-hidden">
-        <div className="h-full bg-blue-500 transition-all duration-100 ease-out" style={{ width: `${progress}%` }} />
+      <div className="text-2xl font-bold mb-8 text-white tracking-tight">
+        Tech<span className="text-primary">Insight</span>
       </div>
 
-      <div className="mt-2 font-mono text-sm text-white">{`${progress}%`}</div>
+      <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-primary transition-all duration-100 ease-out rounded-full"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+
+      <div className="mt-4 font-mono text-sm text-white/60">{progress}%</div>
     </div>
   )
 }
-
