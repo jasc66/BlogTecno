@@ -89,3 +89,39 @@
 .cursor-click {
   animation: click 0.3s ease-in-out;
 }
+
+/* ---------------------------------------------------------------------------
+   scroll-flyover (hero 3D del home)
+
+   El motor fija su canvas con `position: sticky`. Dos reglas del host pueden
+   romperlo en silencio, y ninguna da error en consola:
+
+   1. `overflow-x: hidden` en body o cualquier ancestro crea un contenedor de
+      scroll nuevo y anula el sticky: el canvas se va de pantalla y todo lo que
+      hay tras la primera escena se ve negro. `clip` recorta igual sin crear ese
+      contenedor.
+   2. `scroll-smooth` en <html> pelea con el scrub: el motor lee la posición de
+      scroll cada frame, y el suavizado del navegador se compone con el suyo y
+      produce una sensación de goma. Por eso el suavizado se aplica sólo a las
+      páginas que NO alojan un flyover.
+--------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+html:has(.sf-host) {
+  scroll-behavior: auto;
+}
+
+body {
+  overflow-x: clip;
+}
+
+/* El motor congela el vuelo bajo prefers-reduced-motion y salta al centro de
+   cada escena; el fundido del copy se mantiene corto para que no parezca
+   animación decorativa. */
+@media (prefers-reduced-motion: reduce) {
+  .sf-host .sf-section {
+    transition-duration: 0.15s;
+  }
+}
