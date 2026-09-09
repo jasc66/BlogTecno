@@ -263,7 +263,7 @@ export function HeroFlyover() {
         <div className="pointer-events-auto mt-9 flex flex-wrap items-center justify-center gap-3">
           <a
             href="/noticias"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-[#16a34a] px-7 text-sm font-semibold text-white transition-colors hover:bg-[#15803d]"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-[#15803d] px-7 text-sm font-semibold text-white transition-colors hover:bg-[#166534]"
           >
             Explorar noticias
           </a>
@@ -294,7 +294,7 @@ export function HeroFlyover() {
             '--sf-overlay-blur': '10px',
             '--sf-overlay-radius': '16px',
             '--sf-overlay-padding': '1.4em 1.6em',
-            '--sf-cta-bg': '#16a34a',
+            '--sf-cta-bg': '#15803d',
             '--sf-cta-text-color': '#ffffff',
             '--sf-cta-radius': '8px',
             '--sf-tag-border': 'rgba(74,222,128,0.55)',
