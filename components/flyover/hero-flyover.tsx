@@ -221,7 +221,7 @@ export function HeroFlyover() {
       >
         <div className="flex flex-col items-center gap-4">
           <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary/20 border-t-primary" />
-          <span className="text-sm text-white/50">Construyendo el corredor…</span>
+          <span className="text-sm text-white/85">Construyendo el corredor…</span>
         </div>
       </div>
 

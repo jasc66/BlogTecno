@@ -61,7 +61,7 @@ export function SplashScreen() {
         />
       </div>
 
-      <div className="mt-4 font-mono text-sm text-white/60">{progress}%</div>
+      <div className="mt-4 font-mono text-sm text-white/85">{progress}%</div>
     </div>
   )
 }

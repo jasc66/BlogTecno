@@ -30,7 +30,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   return (
     <article className="container mx-auto px-4 py-8 mt-16">
       <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
-      <div className="mb-4 text-gray-400">
+      <div className="mb-4 text-gray-600">
         <span>Por {article.author} | </span>
         <span>Publicado el {article.date}</span>
       </div>

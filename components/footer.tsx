@@ -14,17 +14,17 @@ export function Footer() {
               Tu fuente de información tecnológica
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Facebook size={24} />
+              <Link href="#" aria-label="Síguenos en Facebook" className="text-muted-foreground hover:text-primary transition-colors">
+                <Facebook size={24} aria-hidden="true" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter size={24} />
+              <Link href="#" aria-label="Síguenos en Twitter" className="text-muted-foreground hover:text-primary transition-colors">
+                <Twitter size={24} aria-hidden="true" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Instagram size={24} />
+              <Link href="#" aria-label="Síguenos en Instagram" className="text-muted-foreground hover:text-primary transition-colors">
+                <Instagram size={24} aria-hidden="true" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin size={24} />
+              <Link href="#" aria-label="Síguenos en LinkedIn" className="text-muted-foreground hover:text-primary transition-colors">
+                <Linkedin size={24} aria-hidden="true" />
               </Link>
             </div>
           </div>

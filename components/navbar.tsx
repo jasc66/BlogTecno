@@ -44,7 +44,7 @@ export function Navbar() {
     return (
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background h-16">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center">
-          <Link href="/" className="flex-shrink-0">
+          <Link href="/" aria-label="Ir al inicio — TechInsight" className="flex-shrink-0">
             <Logo />
           </Link>
         </div>
@@ -63,7 +63,7 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex-shrink-0 relative z-50">
+            <Link href="/" aria-label="Ir al inicio — TechInsight" className="flex-shrink-0 relative z-50">
               <Logo />
             </Link>
             
