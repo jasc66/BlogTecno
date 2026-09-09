@@ -253,7 +253,7 @@ export function HeroFlyover() {
           Tech<span className="text-[#4ade80]">Insight</span>
         </p>
 
-        <p className="mt-5 max-w-xl text-[clamp(1rem,2.4vw,1.25rem)] leading-relaxed text-white/75 drop-shadow-[0_1px_12px_rgba(0,0,0,0.9)]">
+        <p className="mt-5 max-w-xl text-[clamp(1rem,2.4vw,1.25rem)] leading-relaxed text-white/90 drop-shadow-[0_2px_16px_rgba(0,0,0,0.95)]">
           Noticias, análisis y debates sobre las tecnologías que están
           transformando nuestro mundo.
         </p>
@@ -269,16 +269,16 @@ export function HeroFlyover() {
           </a>
           <a
             href="#destacados"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-white/25 bg-white/5 px-7 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/15"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-white/40 bg-black/40 px-7 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-black/60"
           >
             Ver destacados
           </a>
         </div>
 
-        <span className="mt-12 flex flex-col items-center gap-2 text-[0.7rem] uppercase tracking-[0.2em] text-white/45">
+        <span className="mt-12 flex flex-col items-center gap-2 text-[0.7rem] uppercase tracking-[0.2em] text-white/85 drop-shadow-[0_1px_10px_rgba(0,0,0,0.95)]">
           Desplázate para recorrerlo
-          <span className="flex h-9 w-5 justify-center rounded-full border border-white/25 pt-1.5">
-            <span className="h-1.5 w-1 animate-bounce rounded-full bg-white/60" />
+          <span className="flex h-9 w-5 justify-center rounded-full border border-white/40 pt-1.5">
+            <span className="h-1.5 w-1 animate-bounce rounded-full bg-white/80" />
           </span>
         </span>
       </div>
